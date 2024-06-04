@@ -15,7 +15,7 @@ pub mod energy_grid {
         longitude: f32
     ) -> Result<()> {
         ctx.accounts.energy_device.name = name;
-        ctx.accounts.energy_device.is_active = false;
+        ctx.accounts.energy_device.active_until = 0;
         ctx.accounts.energy_device.output_power_w = output_power_w;
         ctx.accounts.energy_device.capacity_kwh = capacity_kwh;
         ctx.accounts.energy_device.latitude = latitude;
@@ -51,7 +51,7 @@ pub struct Initialize<'info> {
 #[account]
 pub struct EnergyDevice {
     pub name: String,
-    pub is_active: bool,
+    pub active_until: i64,
     pub output_power_w: f64,
     pub capacity_kwh: f64,
     pub latitude: f32,
@@ -59,5 +59,5 @@ pub struct EnergyDevice {
 }
 
 impl EnergyDevice {
-    pub const MAX_SIZE: usize = (4 + 32) + 1 + 8 + 8 + 4 + 4;
+    pub const MAX_SIZE: usize = (4 + 32) + 8 + 8 + 8 + 4 + 4;
 }

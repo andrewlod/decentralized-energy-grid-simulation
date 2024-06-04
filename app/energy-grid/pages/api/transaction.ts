@@ -37,11 +37,11 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
   transaction.recentBlockhash = latestBlockhash.blockhash;
 
   // TODO: Charge user and activate energy device for a given amount of time
-  
+
 
   res.status(StatusCodes.NOT_IMPLEMENTED);
 }
- 
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse

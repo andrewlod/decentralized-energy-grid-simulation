@@ -3,6 +3,7 @@ import { Program } from "@coral-xyz/anchor";
 import { EnergyGrid } from "../target/types/energy_grid";
 import { getLocalAccount } from "./util";
 import { assert } from "chai";
+import { BN } from "bn.js";
 
 describe("Energy Grid", () => {
   const provider = anchor.AnchorProvider.env();
@@ -44,7 +45,7 @@ describe("Energy Grid", () => {
     const energyDevice = await program.account.energyDevice.fetch(energyDevicePDA);
 
     assert.equal(energyDevice.name, deviceName);
-    assert.equal(energyDevice.isActive, false);
+    assert(energyDevice.activeUntil.eq(new BN(0)), `${energyDevice.activeUntil} is not 0.`);
     assert.equal(energyDevice.outputPowerW, deviceOutputPower);
     assert.equal(energyDevice.capacityKwh, deviceCapacity);
     assert.equal(energyDevice.latitude.toFixed(4), deviceLatitude.toFixed(4));
