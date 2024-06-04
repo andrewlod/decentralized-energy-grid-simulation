@@ -15,11 +15,25 @@ pub mod energy_grid {
         longitude: f32
     ) -> Result<()> {
         ctx.accounts.energy_device.name = name;
-        ctx.accounts.energy_device.is_active = false;
+        ctx.accounts.energy_device.active_until = 0;
         ctx.accounts.energy_device.output_power_w = output_power_w;
         ctx.accounts.energy_device.capacity_kwh = capacity_kwh;
         ctx.accounts.energy_device.latitude = latitude;
         ctx.accounts.energy_device.longitude = longitude;
+
+        Ok(())
+    }
+
+    pub fn add_active_time(
+        ctx: Context<AddActiveTime>,
+        time_seconds: u64
+    ) -> Result<()> {
+        let clock = Clock::get()?;
+        if ctx.accounts.energy_device.active_until < clock.unix_timestamp {
+            ctx.accounts.energy_device.active_until = clock.unix_timestamp;
+        }
+
+        ctx.accounts.energy_device.active_until += time_seconds as i64;
 
         Ok(())
     }
@@ -48,10 +62,19 @@ pub struct Initialize<'info> {
     pub rent: Sysvar<'info, Rent>,
 }
 
+#[derive(Accounts)]
+pub struct AddActiveTime<'info> {
+    #[account(mut)]
+    pub energy_device: Account<'info, EnergyDevice>,
+
+    #[account(mut)]
+    pub authority: Signer<'info>
+}
+
 #[account]
 pub struct EnergyDevice {
     pub name: String,
-    pub is_active: bool,
+    pub active_until: i64,
     pub output_power_w: f64,
     pub capacity_kwh: f64,
     pub latitude: f32,
@@ -59,5 +82,5 @@ pub struct EnergyDevice {
 }
 
 impl EnergyDevice {
-    pub const MAX_SIZE: usize = (4 + 32) + 1 + 8 + 8 + 4 + 4;
+    pub const MAX_SIZE: usize = (4 + 32) + 8 + 8 + 8 + 4 + 4;
 }

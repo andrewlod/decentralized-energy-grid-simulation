@@ -1,8 +1,14 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { EnergyGrid } from "../target/types/energy_grid";
-import { getLocalAccount } from "./util";
-import { assert } from "chai";
+import { getDummyEnergyDevice, getLocalAccount, initializeEnergyDevice, validateEnergyDevice } from "./util";
+import { BN } from "bn.js";
+import bnModule from "bn.js";
+import { assert, expect } from "chai";
+import chai from "chai";
+import chaiBigNumber from "chai-bn";
+
+chai.use(chaiBigNumber(bnModule));
 
 describe("Energy Grid", () => {
   const provider = anchor.AnchorProvider.env();
@@ -12,42 +18,36 @@ describe("Energy Grid", () => {
   const program = anchor.workspace.EnergyGrid as Program<EnergyGrid>;
 
   it("Initializes", async () => {
-    const deviceName = "My Energy Device";
-    const deviceOutputPower = 1100;
-    const deviceCapacity = 50000;
-    const deviceLatitude = -25.4186261;
-    const deviceLongitude = -49.2377127;
+    const dummy = getDummyEnergyDevice();
+    const energyDevicePDA = await initializeEnergyDevice(dummy, program);
+    
+    const energyDevice = await program.account.energyDevice.fetch(energyDevicePDA);
+    validateEnergyDevice(energyDevice, dummy);
+  });
 
+  it("Adds to Active Time", async () => {
     const walletKeypair = await getLocalAccount();
+    const dummy = getDummyEnergyDevice();
 
     const [energyDevicePDA] = anchor.web3.PublicKey.findProgramAddressSync(
       [
         walletKeypair.publicKey.toBuffer(),
         Buffer.from("_"),
-        Buffer.from(deviceName)
+        Buffer.from(dummy.name)
       ],
       program.programId
     );
 
-    await program.methods.initialize(
-      deviceName,
-      deviceOutputPower,
-      deviceCapacity,
-      deviceLatitude,
-      deviceLongitude
-    )
+    const now = Date.now() / 1000;
+    await program.methods.addActiveTime(new BN(3600))
       .accounts({
+        energyDevice: energyDevicePDA,
         authority: walletKeypair.publicKey
       })
       .rpc();
-    
-    const energyDevice = await program.account.energyDevice.fetch(energyDevicePDA);
 
-    assert.equal(energyDevice.name, deviceName);
-    assert.equal(energyDevice.isActive, false);
-    assert.equal(energyDevice.outputPowerW, deviceOutputPower);
-    assert.equal(energyDevice.capacityKwh, deviceCapacity);
-    assert.equal(energyDevice.latitude.toFixed(4), deviceLatitude.toFixed(4));
-    assert.equal(energyDevice.longitude.toFixed(4), deviceLongitude.toFixed(4));
+    const energyDevice = await program.account.energyDevice.fetch(energyDevicePDA);
+    const compare = new BN(now + 3600);
+    expect(energyDevice.activeUntil).to.be.bignumber.closeTo(compare, new BN(60), `${energyDevice.activeUntil} is not close to ${compare}`);
   });
 });
