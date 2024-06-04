@@ -23,6 +23,20 @@ pub mod energy_grid {
 
         Ok(())
     }
+
+    pub fn add_active_time(
+        ctx: Context<AddActiveTime>,
+        time_seconds: u64
+    ) -> Result<()> {
+        let clock = Clock::get()?;
+        if ctx.accounts.energy_device.active_until < clock.unix_timestamp {
+            ctx.accounts.energy_device.active_until = clock.unix_timestamp;
+        }
+
+        ctx.accounts.energy_device.active_until += time_seconds as i64;
+
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -46,6 +60,15 @@ pub struct Initialize<'info> {
 
     pub system_program: Program<'info, System>,
     pub rent: Sysvar<'info, Rent>,
+}
+
+#[derive(Accounts)]
+pub struct AddActiveTime<'info> {
+    #[account(mut)]
+    pub energy_device: Account<'info, EnergyDevice>,
+
+    #[account(mut)]
+    pub authority: Signer<'info>
 }
 
 #[account]
