@@ -4,7 +4,7 @@ import { EnergyGrid } from "../target/types/energy_grid";
 import { getDummyEnergyDevice, getLocalAccount, initializeEnergyDevice, validateEnergyDevice } from "./util";
 import { BN } from "bn.js";
 import bnModule from "bn.js";
-import { assert, expect } from "chai";
+import { expect } from "chai";
 import chai from "chai";
 import chaiBigNumber from "chai-bn";
 
