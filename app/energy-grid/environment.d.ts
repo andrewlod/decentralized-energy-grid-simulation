@@ -6,6 +6,9 @@ declare global {
       ICON_LABEL: string;
       CONNECTION_URL: string;
       PROGRAM_ID: string;
+      HOURLY_PRICE: string;
+      MERCHANT_SECRET_KEY: string;
+      ENERGY_DEVICE_NAME: string;
     }
   }
 }

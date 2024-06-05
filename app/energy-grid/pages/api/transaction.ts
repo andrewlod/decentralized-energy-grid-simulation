@@ -1,11 +1,13 @@
-import { CONNECTION } from '@/util/consts';
-import { PublicKey, Transaction } from '@solana/web3.js';
+import { CONNECTION, ENERGY_DEVICE_PDA, MERCHANT, PROGRAM } from '@/util/consts';
+import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
+import { BN } from 'bn.js';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const {
   ICON_URL,
-  ICON_LABEL
+  ICON_LABEL,
+  HOURLY_PRICE,
 } = process.env;
 
 type GET = {
@@ -18,6 +20,8 @@ type POST = {
   message: string;
 };
 
+const hourlyPrice = parseFloat(HOURLY_PRICE);
+
 const get = async (_req: NextApiRequest, res: NextApiResponse<GET>) => {
   res.status(StatusCodes.OK).json({
     label: ICON_LABEL,
@@ -27,19 +31,45 @@ const get = async (_req: NextApiRequest, res: NextApiResponse<GET>) => {
 
 const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
   const { account } = req.body;
-  const { instruction } = req.query;
 
   const sender = new PublicKey(account);
 
+  // Charge user and activate energy device for a given amount of time
+  const transferIx = SystemProgram.transfer({
+    fromPubkey: sender,
+    toPubkey: MERCHANT.publicKey,
+    lamports: hourlyPrice * LAMPORTS_PER_SOL
+  });
+
+  const addActiveTimeIx = await PROGRAM.methods.add_active_time(new BN(3600))
+    .accounts({
+      energy_device: ENERGY_DEVICE_PDA,
+      authority: MERCHANT.publicKey
+    })
+    .instruction();
+
+  // Create transaction and add instructions
   const transaction = new Transaction();
+  transaction.add(transferIx);
+  transaction.add(addActiveTimeIx);
+
   const latestBlockhash = await CONNECTION.getLatestBlockhash();
   transaction.feePayer = sender;
   transaction.recentBlockhash = latestBlockhash.blockhash;
 
-  // TODO: Charge user and activate energy device for a given amount of time
+  transaction.sign(MERCHANT);
 
+  const serializedTransaction = transaction.serialize({
+    verifySignatures: false,
+    requireAllSignatures: false
+  });
 
-  res.status(StatusCodes.NOT_IMPLEMENTED);
+  const base64Transaction = serializedTransaction.toString('base64');
+
+  res.status(StatusCodes.OK).send({
+    transaction: base64Transaction,
+    message: "Use Energy Device for 1 hour"
+  });
 }
 
 export default function handler(

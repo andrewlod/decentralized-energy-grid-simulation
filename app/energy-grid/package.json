@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.30.0",
     "@solana/pay": "^0.2.5",
     "@solana/web3.js": "^1.91.9",
     "http-status-codes": "^2.3.0",
