@@ -6,7 +6,6 @@ import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 
 const {
   CONNECTION_URL,
-  PROGRAM_ID,
   MERCHANT_SECRET_KEY,
   ENERGY_DEVICE_NAME
 } = process.env;

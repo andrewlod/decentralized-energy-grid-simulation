@@ -50,14 +50,14 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
 
   // Create transaction and add instructions
   const transaction = new Transaction();
-  transaction.add(transferIx);
+  // transaction.add(transferIx);
   transaction.add(addActiveTimeIx);
 
   const latestBlockhash = await CONNECTION.getLatestBlockhash();
   transaction.feePayer = sender;
   transaction.recentBlockhash = latestBlockhash.blockhash;
 
-  transaction.sign(MERCHANT);
+  // transaction.sign(MERCHANT);
 
   const serializedTransaction = transaction.serialize({
     verifySignatures: false,
