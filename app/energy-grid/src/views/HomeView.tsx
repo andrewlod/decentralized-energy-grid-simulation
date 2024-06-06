@@ -14,10 +14,9 @@ export const HomeView: FC = ({ }) => {
 
   const qrRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    console.log(encodeURL({ link: new URL(SOLANA_PAY_URL) }))
     const qr = createQR(
-      encodeURL({
-        link: new URL(SOLANA_PAY_URL)
-      }),
+      `solana:${SOLANA_PAY_URL}`,
       360
     );
 
