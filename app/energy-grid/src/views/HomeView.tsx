@@ -6,7 +6,8 @@ import { FC, useEffect, useRef } from "react";
 let SOLANA_PAY_URL: string = "";
 
 if (typeof window !== "undefined") {
-  SOLANA_PAY_URL = `${window.location.protocol}//${window.location.host}/api/transaction`;
+  SOLANA_PAY_URL = `https://decentralized-energy-grid-simulation.vercel.app/api/transaction`;
+  console.log(SOLANA_PAY_URL);
 }
 
 export const HomeView: FC = ({ }) => {
