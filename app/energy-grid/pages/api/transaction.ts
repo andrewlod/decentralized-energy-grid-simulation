@@ -23,6 +23,7 @@ type POST = {
 const hourlyPrice = parseFloat(HOURLY_PRICE);
 
 const get = async (_req: NextApiRequest, res: NextApiResponse<GET>) => {
+  console.log("Sending metadata to user");
   res.status(StatusCodes.OK).json({
     label: ICON_LABEL,
     icon: ICON_URL
@@ -65,6 +66,7 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
   });
 
   const base64Transaction = serializedTransaction.toString('base64');
+  console.log(`Sending trancation ${base64Transaction} to user`);
 
   res.status(StatusCodes.OK).send({
     transaction: base64Transaction,
