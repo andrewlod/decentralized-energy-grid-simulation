@@ -3,7 +3,11 @@
 import { createQR, encodeURL } from "@solana/pay";
 import { FC, useEffect, useRef } from "react";
 
-const SOLANA_PAY_URL = `${window.location.protocol}//${window.location.host}/api/transaction`;
+let SOLANA_PAY_URL: string = "";
+
+if (typeof window !== "undefined") {
+  SOLANA_PAY_URL = `${window.location.protocol}//${window.location.host}/api/transaction`;
+}
 
 export const HomeView: FC = ({ }) => {
 
