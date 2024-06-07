@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="OFAHxet9yhiEAMQGFP1r" name="Page-1">
-        <mxGraphModel dx="568" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="473" dy="404" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,10 +13,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="6" value="Energy Grid Program" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
-                    <mxGeometry x="611" y="420" width="200" height="80" as="geometry"/>
+                    <mxGeometry x="633" y="420" width="200" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="Energy Device Account" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
-                    <mxGeometry x="326" y="420" width="200" height="80" as="geometry"/>
+                    <mxGeometry x="342" y="420" width="200" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="30" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="12" target="29" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -44,92 +44,81 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="PDA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
-                    <mxGeometry x="381" y="285" width="90" height="30" as="geometry"/>
+                    <mxGeometry x="397" y="285" width="90" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="36" target="45">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="47" value="Reads Solana Pay&lt;br&gt;QR Code" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="46">
-                    <mxGeometry x="-0.45" y="3" relative="1" as="geometry">
-                        <mxPoint x="47" y="18" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="48" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1">
+                <mxCell id="48" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="147" y="590" as="sourcePoint"/>
                         <mxPoint x="147" y="500" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="49" value="Sends Transaction&lt;br&gt;Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="48">
+                <mxCell id="49" value="Sends Transaction&lt;br&gt;Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="48" vertex="1" connectable="0">
                     <mxGeometry x="0.4444" y="1" relative="1" as="geometry">
                         <mxPoint x="-59" y="15" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="60" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="36" target="45">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="Reads Solana&lt;br&gt;Pay QR Code" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="60">
+                    <mxGeometry x="0.3429" y="-4" relative="1" as="geometry">
+                        <mxPoint x="-15" y="16" as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="36" value="User Wallet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6d8764;fontColor=#ffffff;strokeColor=#3A5431;" parent="1" vertex="1">
                     <mxGeometry x="60" y="590" width="200" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="40" target="9" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="42" value="Listens to" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="41" vertex="1" connectable="0">
-                    <mxGeometry x="-0.2391" y="-1" relative="1" as="geometry">
-                        <mxPoint x="-37" y="-6" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="40" value="Energy Device Infrastructure" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#006666;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
-                    <mxGeometry x="326" y="590" width="200" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="50" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+                <mxCell id="50" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="175" y="500" as="sourcePoint"/>
                         <mxPoint x="175" y="590" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="51" value="Responds with&lt;br&gt;Serialized Transaction" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="50">
+                <mxCell id="51" value="Responds with&lt;br&gt;Serialized Transaction" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="50" vertex="1" connectable="0">
                     <mxGeometry x="-0.4889" y="3" relative="1" as="geometry">
                         <mxPoint x="52" y="17" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="52" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="44" target="9">
+                <mxCell id="52" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="44" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="Adds Active&lt;br&gt;Time" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="52">
+                <mxCell id="53" value="Adds Active&lt;br&gt;Time" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="52" vertex="1" connectable="0">
                     <mxGeometry x="-0.3636" y="-3" relative="1" as="geometry">
                         <mxPoint x="9" y="-23" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" value="Backend Server" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9C6B08;fontColor=#ffffff;strokeColor=#9C6B08;" vertex="1" parent="1">
+                <mxCell id="44" value="Backend Server" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9C6B08;fontColor=#ffffff;strokeColor=#9C6B08;" parent="1" vertex="1">
                     <mxGeometry x="60" y="420" width="200" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="User Frontend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9C6B08;strokeColor=#9C6B08;fontColor=#ffffff;" vertex="1" parent="1">
-                    <mxGeometry x="60" y="750" width="200" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="55" style="edgeStyle=none;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="40" target="40">
+                <mxCell id="67" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="45" target="9">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="Activates if&lt;br&gt;Active Until &amp;gt; NOW" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="55">
-                    <mxGeometry x="0.3123" y="2" relative="1" as="geometry">
-                        <mxPoint x="54" y="-12" as="offset"/>
+                <mxCell id="68" value="Listens to" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="67">
+                    <mxGeometry x="0.5889" y="1" relative="1" as="geometry">
+                        <mxPoint x="-31" y="22" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="58" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="57" target="40">
+                <mxCell id="45" value="User Frontend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9C6B08;strokeColor=#9C6B08;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="342" y="590" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="57" target="45">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="Utilizes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="58">
-                    <mxGeometry x="0.4223" relative="1" as="geometry">
-                        <mxPoint x="34" y="24" as="offset"/>
+                <mxCell id="66" value="Views" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="64">
+                    <mxGeometry x="0.3708" y="1" relative="1" as="geometry">
+                        <mxPoint x="-21" y="11" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="57" target="45">
+                <mxCell id="57" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="427" y="730" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" style="edgeStyle=none;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="45" target="45">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="Views" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="62">
-                    <mxGeometry x="0.4133" y="-1" relative="1" as="geometry">
-                        <mxPoint x="36" y="-9" as="offset"/>
+                <mxCell id="63" value="Shows active status if&lt;br&gt;Active Until &amp;gt; NOW" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="62">
+                    <mxGeometry x="0.2623" y="-1" relative="1" as="geometry">
+                        <mxPoint x="59" y="-9" as="offset"/>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="57" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-                    <mxGeometry x="410" y="760" width="30" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

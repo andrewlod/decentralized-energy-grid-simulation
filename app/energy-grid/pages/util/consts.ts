@@ -1,7 +1,7 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { Connection, Keypair } from "@solana/web3.js";
-import * as IDL from "@/idl/energy_grid.json";
+import * as IDL from "@server/idl/energy_grid.json";
 import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 
 const {
@@ -29,3 +29,20 @@ export const [ENERGY_DEVICE_PDA] = anchor.web3.PublicKey.findProgramAddressSync(
   ],
   PROGRAM.programId
 );
+
+CONNECTION.getAccountInfo(ENERGY_DEVICE_PDA)
+  .then(accountInfo => {
+    if (accountInfo === null) {
+      PROGRAM.methods.initialize(
+        ENERGY_DEVICE_NAME,
+        1100,
+        50000,
+        -25.4186261,
+        -49.2377127
+      )
+       .accounts({
+          authority: MERCHANT.publicKey
+        })
+       .rpc();
+    }
+  });

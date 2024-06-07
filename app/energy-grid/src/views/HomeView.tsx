@@ -7,7 +7,6 @@ let SOLANA_PAY_URL: string = "";
 
 if (typeof window !== "undefined") {
   SOLANA_PAY_URL = `${window.location.protocol}//${window.location.host}/api/transaction`;
-  console.log(SOLANA_PAY_URL);
 }
 
 export const HomeView: FC = ({ }) => {
