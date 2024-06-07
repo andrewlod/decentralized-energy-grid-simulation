@@ -41,9 +41,9 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
     lamports: hourlyPrice * LAMPORTS_PER_SOL
   });
 
-  const addActiveTimeIx = await PROGRAM.methods.add_active_time(new BN(3600))
+  const addActiveTimeIx = await PROGRAM.methods.addActiveTime(new BN(3600))
     .accounts({
-      energy_device: ENERGY_DEVICE_PDA,
+      energyDevice: ENERGY_DEVICE_PDA,
       authority: MERCHANT.publicKey
     })
     .instruction();

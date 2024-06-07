@@ -7,6 +7,9 @@ skip-lint = false
 [programs.localnet]
 energy_grid = "64N1Mk3qkNjY9m5xmaKF2oDojFR5aERgGWcFHuqtHtjo"
 
+[programs.devnet]
+energy_grid = "64N1Mk3qkNjY9m5xmaKF2oDojFR5aERgGWcFHuqtHtjo"
+
 [registry]
 url = "https://api.apr.dev"
 
