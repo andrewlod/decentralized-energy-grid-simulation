@@ -1,4 +1,4 @@
-import { HomeView } from "@/views/HomeView";
+import { HomeView } from "@client/views/HomeView";
 import styles from "./page.module.css";
 
 export default function Home() {

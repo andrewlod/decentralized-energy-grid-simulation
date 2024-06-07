@@ -1,4 +1,4 @@
-import { CONNECTION, ENERGY_DEVICE_PDA, MERCHANT, PROGRAM } from '@/util/consts';
+import { CONNECTION, ENERGY_DEVICE_PDA, MERCHANT, PROGRAM } from '@server/util/consts';
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
 import { BN } from 'bn.js';
 import { StatusCodes } from 'http-status-codes';
