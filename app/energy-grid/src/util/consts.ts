@@ -1,7 +1,7 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
-import { Connection, Keypair, PublicKey } from "@solana/web3.js";
-import { EnergyGrid, IDL } from "@/idl/energy_grid"
+import { Connection, Keypair } from "@solana/web3.js";
+import * as IDL from "@/idl/energy_grid.json";
 import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 
 const {
@@ -19,7 +19,7 @@ const provider = new anchor.AnchorProvider(CONNECTION, MERCHANT_WALLET, {
   commitment: "processed",
 });
 
-export const PROGRAM = new Program<EnergyGrid>(IDL, provider);
+export const PROGRAM = new Program(IDL as anchor.Idl, provider);
 
 export const [ENERGY_DEVICE_PDA] = anchor.web3.PublicKey.findProgramAddressSync(
   [

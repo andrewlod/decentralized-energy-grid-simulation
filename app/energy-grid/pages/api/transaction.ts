@@ -23,7 +23,6 @@ type POST = {
 const hourlyPrice = parseFloat(HOURLY_PRICE);
 
 const get = async (_req: NextApiRequest, res: NextApiResponse<GET>) => {
-  console.log("Sending metadata to user");
   res.status(StatusCodes.OK).json({
     label: ICON_LABEL,
     icon: ICON_URL
@@ -42,23 +41,23 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
     lamports: hourlyPrice * LAMPORTS_PER_SOL
   });
 
-  const addActiveTimeIx = await PROGRAM.methods.add_active_time(new BN(3600))
+  const addActiveTimeIx = await PROGRAM.methods.addActiveTime(new BN(3600))
     .accounts({
-      energy_device: ENERGY_DEVICE_PDA,
+      energyDevice: ENERGY_DEVICE_PDA,
       authority: MERCHANT.publicKey
     })
     .instruction();
 
   // Create transaction and add instructions
   const transaction = new Transaction();
-  // transaction.add(transferIx);
+  transaction.add(transferIx);
   transaction.add(addActiveTimeIx);
 
   const latestBlockhash = await CONNECTION.getLatestBlockhash();
   transaction.feePayer = sender;
   transaction.recentBlockhash = latestBlockhash.blockhash;
 
-  // transaction.sign(MERCHANT);
+  transaction.sign(MERCHANT);
 
   const serializedTransaction = transaction.serialize({
     verifySignatures: false,
@@ -66,7 +65,6 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
   });
 
   const base64Transaction = serializedTransaction.toString('base64');
-  console.log(`Sending trancation ${base64Transaction} to user`);
 
   res.status(StatusCodes.OK).send({
     transaction: base64Transaction,
