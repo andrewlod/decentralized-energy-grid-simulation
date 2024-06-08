@@ -18,6 +18,7 @@ const iconStyle = {
 export const EnergyDevice: FC = ({ }) => {
 
   const [activeUntil, setActiveUntil] = useState<Date>(getMinimumDate());
+  const [isActive, setIsActive] = useState(false);
   const anchorContext = useContext(AnchorContext);
 
   useEffect(() => {
@@ -55,12 +56,20 @@ export const EnergyDevice: FC = ({ }) => {
     listenToAccount();
   }, [anchorContext.program.programId, anchorContext.connection, anchorContext.program.coder.accounts]);
 
-  console.log(activeUntil);
+  useEffect(() => {
+    const checkStatus = () => {
+      setIsActive(activeUntil >= new Date());
+    };
+
+    const intervalId = setInterval(checkStatus, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [activeUntil]);
 
   return (
     <div>
       {
-        (activeUntil >= new Date()) ? (
+        isActive ? (
           <div>
             <h1 style={{ textAlign: "center" }}>The device is active until {activeUntil.toLocaleString()}</h1>
             <PowerSettingsNew color="success" style={iconStyle} />
