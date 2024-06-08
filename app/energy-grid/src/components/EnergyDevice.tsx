@@ -4,10 +4,16 @@ import * as anchor from "@coral-xyz/anchor";
 import { context as AnchorContext } from "@client/contexts/AnchorContext";
 import { getMinimumDate } from "@client/util/consts";
 import { FC, useContext, useEffect, useState } from "react";
+import { PowerSettingsNew } from "@mui/icons-material";
 
 type EnergyDevice = {
   activeUntil: anchor.BN;
-}
+};
+
+const iconStyle = {
+  width: "100%",
+  height: "100%",
+};
 
 export const EnergyDevice: FC = ({ }) => {
 
@@ -49,10 +55,22 @@ export const EnergyDevice: FC = ({ }) => {
     listenToAccount();
   }, [anchorContext.program.programId, anchorContext.connection, anchorContext.program.coder.accounts]);
 
+  console.log(activeUntil);
+
   return (
     <div>
       {
-        (activeUntil >= new Date()) ? `Device is active until ${activeUntil.toLocaleString()}` : "Device is not active"
+        (activeUntil >= new Date()) ? (
+          <div>
+            <h1 style={{ textAlign: "center" }}>The device is active until {activeUntil.toLocaleString()}</h1>
+            <PowerSettingsNew color="success" style={iconStyle} />
+          </div>
+        ) : (
+          <div>
+            <h1 style={{ textAlign: "center" }}>The device is not active</h1>
+            <PowerSettingsNew color="error" style={iconStyle} />
+          </div>
+        )
       }
     </div>
   );

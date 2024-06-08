@@ -1,5 +1,6 @@
 "use client";
 
+import { Box, Grid } from "@mui/material";
 import { createQR, encodeURL } from "@solana/pay";
 import { FC, useEffect, useRef } from "react";
 
@@ -17,7 +18,7 @@ export const SolanaPayQR: FC = ({ }) => {
       encodeURL({
         link: new URL(SOLANA_PAY_URL)
       }),
-      360
+      window.innerWidth * 0.15
     );
 
     if (qrRef.current != null) {
@@ -27,6 +28,15 @@ export const SolanaPayQR: FC = ({ }) => {
   }, []);
 
   return (
-    <div ref={qrRef} />
+    <Grid container sx={{ height: "100%" }} alignItems={"center"}>
+      <Grid container spacing={2} direction={"column"} alignItems={"center"} justifyItems={"center"}>
+        <Grid item xs={2}>
+          <h2>Pay with Solana Pay</h2>
+        </Grid>
+        <Grid item xs={10}>
+          <div ref={qrRef} />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
