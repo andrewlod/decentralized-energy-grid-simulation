@@ -78,8 +78,13 @@ ICON_LABEL=My Transaction
 HOURLY_PRICE=0.0005
 MERCHANT_SECRET_KEY=<paste your JSON private key here> # WARNING: THIS IS SENSITIVE DATA
 
-ENERGY_DEVICE_NAME=test
 CONNECTION_URL=https://api.devnet.solana.com
+
+ENERGY_DEVICE_NAME=test
+ENERGY_DEVICE_OUTPUT_POWER=1100
+ENERGY_DEVICE_CAPACITY=50000
+ENERGY_DEVICE_LATITUDE=-25.4186261
+ENERGY_DEVICE_LONGITUDE=-49.2377127
 
 # Frontend
 NEXT_PUBLIC_CONNECTION_URL=https://api.devnet.solana.com
@@ -134,8 +139,8 @@ This section describes features that are either work-in-progress or will be impl
 
 | Feature | Status |
 |---------|--------|
-|Allow energy device simulation owner to customize their energy device features|❌|
 |Allow energy device simulation owner to rent their energy device for custom periods|❌|
+|Add to smart contract function allowing the energy device owner to modify its attributes|❌|
 |Create GitHub Workflows for testing and linting the smart contract|❌|
 |Publish simulation app on Vercel|❌|
 |Record demo of functioning project|❌|

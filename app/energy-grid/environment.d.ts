@@ -9,6 +9,10 @@ declare global {
       HOURLY_PRICE: string;
       MERCHANT_SECRET_KEY: string;
       ENERGY_DEVICE_NAME: string;
+      ENERGY_DEVICE_OUTPUT_POWER: string;
+      ENERGY_DEVICE_CAPACITY: string;
+      ENERGY_DEVICE_LATITUDE: string;
+      ENERGY_DEVICE_LONGITUDE: string;
     }
   }
 }
