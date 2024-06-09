@@ -7,7 +7,11 @@ import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 const {
   CONNECTION_URL,
   MERCHANT_SECRET_KEY,
-  ENERGY_DEVICE_NAME
+  ENERGY_DEVICE_NAME,
+  ENERGY_DEVICE_OUTPUT_POWER,
+  ENERGY_DEVICE_CAPACITY,
+  ENERGY_DEVICE_LATITUDE,
+  ENERGY_DEVICE_LONGITUDE
 } = process.env;
 
 export const CONNECTION = new Connection(CONNECTION_URL || "https://api.devnet.solana.com");
@@ -35,10 +39,10 @@ CONNECTION.getAccountInfo(ENERGY_DEVICE_PDA)
     if (accountInfo === null) {
       PROGRAM.methods.initialize(
         ENERGY_DEVICE_NAME,
-        1100,
-        50000,
-        -25.4186261,
-        -49.2377127
+        parseFloat(ENERGY_DEVICE_OUTPUT_POWER),
+        parseFloat(ENERGY_DEVICE_CAPACITY),
+        parseFloat(ENERGY_DEVICE_LATITUDE),
+        parseFloat(ENERGY_DEVICE_LONGITUDE)
       )
        .accounts({
           authority: MERCHANT.publicKey
