@@ -71,12 +71,12 @@ export const EnergyDevice: FC = ({ }) => {
       {
         isActive ? (
           <div>
-            <h1 style={{ textAlign: "center" }}>The device is active until {activeUntil.toLocaleString()}</h1>
+            <h1 style={{ textAlign: "center", color: "white" }}>The device is active until {activeUntil.toLocaleString()}</h1>
             <PowerSettingsNew color="success" style={iconStyle} />
           </div>
         ) : (
           <div>
-            <h1 style={{ textAlign: "center" }}>The device is not active</h1>
+            <h1 style={{ textAlign: "center", color: "white" }}>The device is not active</h1>
             <PowerSettingsNew color="error" style={iconStyle} />
           </div>
         )
