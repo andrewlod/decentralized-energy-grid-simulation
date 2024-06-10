@@ -1,8 +1,6 @@
-name: Lint Smart Contract
+name: Smart Contract Code Quality
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
