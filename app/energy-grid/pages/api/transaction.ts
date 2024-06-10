@@ -14,9 +14,6 @@ const {
 type PostBody = {
   account: string;
 }
-type PostQuery = {
-  activeTimeMinutes: number;
-}
 
 type GET = {
   label: string;
