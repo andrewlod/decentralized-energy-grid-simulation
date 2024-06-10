@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { SolanaPayQR } from "./SolanaPayQR";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, useTheme } from "@mui/material";
 
 export const PaymentSection: FC = ({ }) => {
   const [isQRCodeActive, setIsQRCodeActive] = useState<boolean>(false);
@@ -30,7 +30,7 @@ export const PaymentSection: FC = ({ }) => {
       <Grid container sx={{ height: "100%" }} alignItems={"center"} justifyItems={"center"}>
         <Grid container spacing={2} direction={"column"} alignItems={"center"} justifyItems={"center"}>
           <Grid item xs={1}>
-            <h3 style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center", color: "white" }}>
               Specify the time the device will be active for:
             </h3>
           </Grid>

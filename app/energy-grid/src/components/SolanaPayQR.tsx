@@ -35,7 +35,7 @@ export const SolanaPayQR: FC<SolanaPayQRProps> = ({ activeTimeMinutes }) => {
     <Grid container sx={{ height: "100%" }} alignItems={"center"}>
       <Grid container spacing={2} direction={"column"} alignItems={"center"} justifyItems={"center"}>
         <Grid item xs={2}>
-          <h2>Pay with Solana Pay</h2>
+          <h2 style={{ color: "white" }}>Pay with Solana Pay</h2>
         </Grid>
         <Grid item xs={10}>
           <div ref={qrRef} />
