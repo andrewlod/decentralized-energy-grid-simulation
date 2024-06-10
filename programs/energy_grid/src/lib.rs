@@ -24,8 +24,45 @@ pub mod energy_grid {
         Ok(())
     }
 
+    pub fn modify(
+        ctx: Context<Modify>,
+        name: Option<String>,
+        active_until: Option<i64>,
+        output_power_w: Option<f64>,
+        capacity_kwh: Option<f64>,
+        latitude: Option<f32>,
+        longitude: Option<f32>
+    ) -> Result<()> {
+
+        if let Some(device_name) = name {
+            ctx.accounts.energy_device.name = device_name;
+        }
+
+        if let Some(device_active_until) = active_until {
+            ctx.accounts.energy_device.active_until = device_active_until;
+        }
+
+        if let Some(device_output_power) = output_power_w {
+            ctx.accounts.energy_device.output_power_w = device_output_power;
+        }
+
+        if let Some(device_capacity) = capacity_kwh {
+            ctx.accounts.energy_device.capacity_kwh = device_capacity;
+        }
+
+        if let Some(device_latitude) = latitude {
+            ctx.accounts.energy_device.latitude = device_latitude;
+        }
+        
+        if let Some(device_longitude) = longitude {
+            ctx.accounts.energy_device.longitude = device_longitude;
+        }
+
+        Ok(())
+    }
+
     pub fn add_active_time(
-        ctx: Context<AddActiveTime>,
+        ctx: Context<Modify>,
         time_seconds: u64
     ) -> Result<()> {
         let clock = Clock::get()?;
@@ -63,7 +100,7 @@ pub struct Initialize<'info> {
 }
 
 #[derive(Accounts)]
-pub struct AddActiveTime<'info> {
+pub struct Modify<'info> {
     #[account(mut)]
     pub energy_device: Account<'info, EnergyDevice>,
 
