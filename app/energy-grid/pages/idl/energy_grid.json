@@ -108,6 +108,68 @@
           "type": "f32"
         }
       ]
+    },
+    {
+      "name": "modify",
+      "discriminator": [
+        208,
+        47,
+        139,
+        217,
+        61,
+        174,
+        161,
+        154
+      ],
+      "accounts": [
+        {
+          "name": "energy_device",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": {
+            "option": "string"
+          }
+        },
+        {
+          "name": "active_until",
+          "type": {
+            "option": "i64"
+          }
+        },
+        {
+          "name": "output_power_w",
+          "type": {
+            "option": "f64"
+          }
+        },
+        {
+          "name": "capacity_kwh",
+          "type": {
+            "option": "f64"
+          }
+        },
+        {
+          "name": "latitude",
+          "type": {
+            "option": "f32"
+          }
+        },
+        {
+          "name": "longitude",
+          "type": {
+            "option": "f32"
+          }
+        }
+      ]
     }
   ],
   "accounts": [

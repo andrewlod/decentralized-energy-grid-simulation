@@ -38,9 +38,9 @@ export async function getLocalAccount(): Promise<Keypair> {
   return await createKeypairFromFile(keypairPath);
 }
 
-export function getDummyEnergyDevice(): EnergyDevice {
+export function getDummyEnergyDevice(name: string): EnergyDevice {
   return {
-    name: "My Energy Device",
+    name,
     outputPowerW: 1100,
     capacityKwh: 50000,
     latitude: -25.4186261,
