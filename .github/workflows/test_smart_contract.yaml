@@ -1,0 +1,31 @@
+name: Test Smart Contract
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: backpackapp/build:v0.30.0
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set default toolchain
+        run: rustup default stable
+      - name: Generate new keygen
+        run: solana-keygen new --no-bip39-passphrase
+      - name: Set solana target cluster to local
+        run: solana config set --url http:localhost:8899
+      - name: Check solana config
+        run: solana config get
+      - name: Install yarn dependencies
+        run: yarn install
+      - name: Build
+        run: anchor build
+      - name: Run tests
+        run: anchor test

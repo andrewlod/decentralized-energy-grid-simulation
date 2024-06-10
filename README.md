@@ -140,7 +140,6 @@ This section describes features that are either work-in-progress or will be impl
 | Feature | Status |
 |---------|--------|
 |Allow energy device simulation owner to rent their energy device for custom periods|🚧|
-|Create GitHub Workflows for testing and linting the smart contract|❌|
 |Publish simulation app on Vercel|❌|
 |Record demo of functioning project|❌|
 
