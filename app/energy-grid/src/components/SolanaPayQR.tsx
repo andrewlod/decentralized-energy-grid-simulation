@@ -10,13 +10,17 @@ if (typeof window !== "undefined") {
   SOLANA_PAY_URL = `${window.location.protocol}//${window.location.host}/api/transaction`;
 }
 
-export const SolanaPayQR: FC = ({ }) => {
+type SolanaPayQRProps = {
+  activeTimeMinutes: number;
+}
+
+export const SolanaPayQR: FC<SolanaPayQRProps> = ({ activeTimeMinutes }) => {
 
   const qrRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const qr = createQR(
       encodeURL({
-        link: new URL(SOLANA_PAY_URL)
+        link: new URL(`${SOLANA_PAY_URL}?activeTimeMinutes=${activeTimeMinutes}`)
       }),
       window.innerWidth * 0.15
     );
@@ -25,7 +29,7 @@ export const SolanaPayQR: FC = ({ }) => {
       qrRef.current.innerHTML = '';
       qr.append(qrRef.current);
     }
-  }, []);
+  }, [activeTimeMinutes]);
 
   return (
     <Grid container sx={{ height: "100%" }} alignItems={"center"}>

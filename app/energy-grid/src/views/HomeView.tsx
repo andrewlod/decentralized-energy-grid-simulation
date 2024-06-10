@@ -1,7 +1,7 @@
 "use client";
 
 import { EnergyDevice } from "@client/components/EnergyDevice";
-import { SolanaPayQR } from "@client/components/SolanaPayQR";
+import { PaymentSection } from "@client/components/PaymentSection";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 
@@ -13,7 +13,7 @@ export const HomeView: FC = ({ }) => {
       </Grid>
       <Grid item container xs={10} spacing={2} columns={12} style={{ width: "60%" }}>
         <Grid item xs={6}>
-          <SolanaPayQR />
+          <PaymentSection />
         </Grid>
         <Grid item xs={6}>
           <EnergyDevice />

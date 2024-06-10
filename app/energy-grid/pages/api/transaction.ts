@@ -1,4 +1,5 @@
 import { CONNECTION, ENERGY_DEVICE_PDA, MERCHANT, PROGRAM } from '@server/util/consts';
+import { minutesToHoursAndMinutes } from '@server/util/util';
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
 import { BN } from 'bn.js';
 import { StatusCodes } from 'http-status-codes';
@@ -9,6 +10,13 @@ const {
   ICON_LABEL,
   HOURLY_PRICE,
 } = process.env;
+
+type PostBody = {
+  account: string;
+}
+type PostQuery = {
+  activeTimeMinutes: number;
+}
 
 type GET = {
   label: string;
@@ -30,7 +38,25 @@ const get = async (_req: NextApiRequest, res: NextApiResponse<GET>) => {
 };
 
 const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
-  const { account } = req.body;
+  try {
+  const { account } = req.body as PostBody;
+  const activeTimeMinutes = req.query.activeTimeMinutes as string;
+
+  if (typeof account !== 'string') {
+    res.status(StatusCodes.BAD_REQUEST).json({
+      transaction: "",
+      message: "Invalid account"
+    });
+    return;
+  }
+
+  const numActiveTimeMinutes = parseInt(activeTimeMinutes);
+  if (typeof activeTimeMinutes !== "string" || [NaN, 0].includes(numActiveTimeMinutes)) {
+    res.status(StatusCodes.BAD_REQUEST).json({
+      transaction: "",
+      message: "Invalid active time"
+    })
+  }
 
   const sender = new PublicKey(account);
 
@@ -38,10 +64,10 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
   const transferIx = SystemProgram.transfer({
     fromPubkey: sender,
     toPubkey: MERCHANT.publicKey,
-    lamports: hourlyPrice * LAMPORTS_PER_SOL
+    lamports: Math.round(hourlyPrice * (numActiveTimeMinutes / 60) * LAMPORTS_PER_SOL)
   });
 
-  const addActiveTimeIx = await PROGRAM.methods.addActiveTime(new BN(3600))
+  const addActiveTimeIx = await PROGRAM.methods.addActiveTime(new BN(numActiveTimeMinutes * 60))
     .accounts({
       energyDevice: ENERGY_DEVICE_PDA,
       authority: MERCHANT.publicKey
@@ -68,8 +94,12 @@ const post = async (req: NextApiRequest, res: NextApiResponse<POST>) => {
 
   res.status(StatusCodes.OK).send({
     transaction: base64Transaction,
-    message: "Use Energy Device for 1 hour"
+    message: `Use Energy Device for ${minutesToHoursAndMinutes(numActiveTimeMinutes)}`
   });
+} catch (err) {
+  console.log(err);
+  throw err;
+}
 }
 
 export default function handler(
