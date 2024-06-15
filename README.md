@@ -18,6 +18,7 @@ This is a DePIN project in the Solana Blockchain that simulates a network where 
   - [Work-in-progress](#work-in-progress)
   - [Authors](#authors)
   - [License](#license)
+  - [Demo](#demo)
 
 ## Architecture
 ### Real World Scenario
@@ -139,12 +140,14 @@ This section describes features that are either work-in-progress or will be impl
 
 | Feature | Status |
 |---------|--------|
-|Allow energy device simulation owner to rent their energy device for custom periods|🚧|
-|Publish simulation app on Vercel|❌|
-|Record demo of functioning project|❌|
 
 ## Authors
 - Andre Wlodkovski - [@andrewlod](https://github.com/andrewlod)
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/license/mit) - see the [LICENSE](LICENSE) file for details.
+
+## Demo
+The video below showcases how the project works and how it could be used in a real-world scenario.
+
+[![Demo](https://img.youtube.com/vi/0Vc19FPVj_4/maxresdefault.jpg)](https://www.youtube.com/watch?v=0Vc19FPVj_4)
